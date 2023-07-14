@@ -27,7 +27,6 @@ def scrap_ecommerce(test_url) -> list:
     # Explicitly wait for an element to be visible
     wait = WebDriverWait(driver, 10)
 
-    # 
     element = wait.until(EC.visibility_of_element_located((By.XPATH,
             locators.shopcategory)))
 
