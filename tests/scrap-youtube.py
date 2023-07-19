@@ -25,7 +25,7 @@ def scrap_youtube(test_url) -> list:
     driver.get(test_url)
 
     # Commented once the tests are executed in non-headless mode
-    driver.maximize_window()
+    # driver.maximize_window()
 
     # Create an instance of ActionChains
     actions = ActionChains(driver)
@@ -33,21 +33,20 @@ def scrap_youtube(test_url) -> list:
     # Explicit wait of 10 seconds
     wait = WebDriverWait(driver, 10)
 
-    # wait.Until(d => ((IJavaScriptExecutor)d).ExecuteScript("return document.readyState").Equals("complete"));
     # Wait for 10 seconds till the Document State is not complete
     wait.until(lambda driver: driver.execute_script('return document.readyState') == 'complete')
  
-
     # Once the page has loaded, scroll to the end of the page to load all the videos
     # Scroll to the end of the page to load all the videos in the channel
     # Reference - https://stackoverflow.com/a/51702698/126105
     # Get scroll height
     start_height = driver.execute_script("return document.documentElement.scrollHeight")
-    print("Height is " + str(start_height))
+    # print("Height is " + str(start_height))
 
     meta_data_arr = []
 
     # Repeat scrolling until reaching the end of the page
+    # Taking cues from my own blog https://www.lambdatest.com/blog/scraping-dynamic-web-pages/
     while True:
         # Scroll to the bottom of the page
         driver.execute_script("window.scrollTo(0, " + str(start_height) + ")")
@@ -55,7 +54,6 @@ def scrap_youtube(test_url) -> list:
         scroll_height = driver.execute_script("return document.documentElement.scrollHeight")
         if (scroll_height == start_height):
             # If heights are the same, we reached the end of page
-            print("End of page reached")
             break
         # print("scroll_height = " + str(scroll_height))
         time.sleep(2)
