@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver import Chrome, ChromeOptions
+from selenium.webdriver import ChromeOptions
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -14,39 +14,43 @@ from pageobject.locators import locators
 
 def scrap_ecommerce(test_url) -> list:
     options = ChromeOptions()
+
+    # Refer https://www.selenium.dev/blog/2023/headless-is-going-away/ for the new way
+    # to trigger browser in headless mode
+
     options.add_argument("--headless=new")
     driver = webdriver.Chrome(options=options)
     driver.get(test_url)
 
-    #This will be commented once the tests are executed in non-headless mode
-    driver.maximize_window()
+    # Commented once the tests are executed in non-headless mode
+    # driver.maximize_window()
 
     # Create an instance of ActionChains
     actions = ActionChains(driver)
 
-    # Explicitly wait for an element to be visible
+    # Explicit wait of 10 seconds
     wait = WebDriverWait(driver, 10)
 
-    element = wait.until(EC.visibility_of_element_located((By.XPATH,
+    # Wait for the element to visible, it will be interactable once it is visible
+    # element_cat = driver.find_element(By.XPATH, "//a[contains(.,'Shop by Category')]")
+    element_cat = wait.until(EC.visibility_of_element_located((By.XPATH,
             locators.shopcategory)))
 
-    # element = driver.find_element(By.XPATH, "//a[contains(.,'Shop by Category')]")
-
-    # Perform a series of actions using ActionChains
-    actions.move_to_element(element).click().perform()
+    # Move to the element and perform click operation
+    actions.move_to_element(element_cat).click().perform()
 
     # element_category = driver.find_element(By.XPATH, "//span[contains(.,'Phone, Tablets & Ipod')]")
-    element_category = wait.until(EC.visibility_of_element_located((By.XPATH,
+    element_phcat = wait.until(EC.visibility_of_element_located((By.XPATH,
             locators.phonecategory)))
 
-    # Perform a series of actions using ActionChains
-    actions.move_to_element(element_category).click().perform()
+    actions.move_to_element(element_phcat).click().perform()
     
     # Better to wait till the respective element is visible
+    # Tough nut : 1 - nested locators!
     nested_elements = wait.until(EC.visibility_of_element_located((By.XPATH,
         "//div[@id='entry_212391']//div[@id='entry_212408']//div[@class='row']")))
     
-    
+    # Tough nut : 2 - nested locators!
     actual_items = nested_elements.find_elements(By.CLASS_NAME,
             "product-layout.product-grid.no-desc.col-xl-4.col-lg-4.col-md-4.col-sm-6.col-6")
 
@@ -62,15 +66,15 @@ def scrap_ecommerce(test_url) -> list:
         # item_image = nested_img_elem.find_element(By.XPATH,
         #    "//*[contains(@id, 'mz-product-grid-image')]")
 
-        nested_prodname_elem = ind_elem_props.find_element(By.CSS_SELECTOR,
+        nested_product_name_elem = ind_elem_props.find_element(By.CSS_SELECTOR,
             "div.product-thumb > div.caption")
         
         ################ Product Name ################
-        nested_title_elem = nested_prodname_elem.find_element(By.CSS_SELECTOR,
+        nested_title_elem = nested_product_name_elem.find_element(By.CSS_SELECTOR,
                 ".title .text-ellipsis-2")
         
         ################ Price #######################
-        nested_price_elem = nested_prodname_elem.find_element(By.CSS_SELECTOR,
+        nested_price_elem = nested_product_name_elem.find_element(By.CSS_SELECTOR,
                 ".price .price-new")
 
         # Create a dictionary of the meta-data of the items on e-commerce store
