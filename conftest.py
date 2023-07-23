@@ -18,17 +18,20 @@ def driver(request):
         
         ch_options = webdriver.FirefoxOptions()
         ch_options.browser_version = "latest"
-        ch_options.platform_name = "Windows 10"
+        ch_options.platform_name = "Windows 11"
+
         lt_options = {}
-        lt_options["username"] = os.getenv("LT_USERNAME")
-        lt_options["accessKey"] = os.getenv("LT_ACCESS_KEY")
-        lt_options["build"] = "e-commerce and dropdown use cases"
-        lt_options["project"] = "Elements Check Tests"
-        lt_options["name"] = "E-commerce and dropdown tests"
+        lt_options["build"] = "Build: Web Scraping with Selenium & Pytest"
+        lt_options["project"] = "Project: Web Scraping with Selenium & Pytest"
+        lt_options["name"] = "Test: Web Scraping with Selenium & Pytest"
+
+        lt_options["browserName"] = "Firefox"
+        lt_options["browserVersion"] = "latest"
+        lt_options["platformName"] = "Windows 11"
+
         lt_options["console"] = "error"
         lt_options["w3c"] = True
         lt_options["headless"] = True
-        lt_options["plugin"] = "python-python"
 
         ch_options.set_capability('LT:Options', lt_options)
 
@@ -40,8 +43,6 @@ def driver(request):
         yield browser
 
         def fin():
-            # browser.execute_script("lambda-status=".format(str(not request.node.rep_call.failed if "passed" else
-            # "failed").lower()))
             if request.node.rep_call.failed:
                 browser.execute_script("lambda-status=failed")
             else:
@@ -56,7 +57,7 @@ def driver(request):
         # to trigger browser in headless mode
 
         options.add_argument("--headless=new")
-        browser = webdriver.Chrome()
+        browser = webdriver.Chrome(options=options)
 
         yield browser
 

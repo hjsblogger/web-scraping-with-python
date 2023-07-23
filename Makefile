@@ -8,8 +8,9 @@ PROJECT_NAME := web scraping using Python
 install:
 	$(PIP) install -r requirements.txt
 	@echo "Set env vars LT_USERNAME & LT_ACCESS_KEY"
-    export LT_USERNAME=himanshujlambdatest
-    export LT_ACCESS_KEY=Ia1MiqNfciCXfnPI8oWs6PL7u0bZ2NRqXd1nkB3HpzICma13D6
+    # Procure Username and AccessKey from https://accounts.lambdatest.com/security
+    export LT_USERNAME=himanshuj
+    export LT_ACCESS_KEY=Ia1MiqNfc
 
 .PHONY: test
 test:
@@ -18,14 +19,14 @@ test:
 
 .PHONY: test
 scrap-using-pyunit:
-	echo $(EXEC_PLATFORM)
-	$(PYTHON) tests/pyunit/test_ecommerce_scraping.py
-	$(PYTHON) tests/pyunit/test_yt_scraping.py
+	- echo $(EXEC_PLATFORM)
+	- $(PYTHON) tests/pyunit/test_ecommerce_scraping.py
+	- $(PYTHON) tests/pyunit/test_yt_scraping.py
 
 scrap-using-pytest:
-	echo $(EXEC_PLATFORM)
-	$(PYTEST) --verbose --capture=no tests/pytest/test_ecommerce_scraping.py
-    # $(PYTEST) --verbose --capture=no tests/pytest/test_yt_scraping.py
+	- echo $(EXEC_PLATFORM)
+	- $(PYTEST) --verbose --capture=no tests/pytest/test_ecommerce_scraping.py
+	- $(PYTEST) --verbose --capture=no tests/pytest/test_yt_scraping.py
 
 .PHONY: clean
 clean:

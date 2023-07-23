@@ -96,5 +96,4 @@ class TestEcommerceScrapping:
         # wait = WebDriverWait(driver, 10)
 
         meta_data_arr = helpers.scrap_ecomm_content(driver)
-        # meta_data_arr.append(meta_data_dict)
         helpers.print_scrapped_content(meta_data_arr)

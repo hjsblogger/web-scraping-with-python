@@ -10,7 +10,7 @@ from pageobject.helpers import *
 @pytest.mark.usefixtures('driver')
 
 class TestYoutubeScraping:
-    def test_scrap_youtube(self, driver) -> list:
+    def exemp_test_scrap_youtube(self, driver) -> list:
         # driver.get("https://www.youtube.com/@hjsblogger/videos")
         driver.get(locators.test_yt_url)
 
@@ -115,4 +115,20 @@ class TestYoutubeScraping:
         # print_scrapped_yt_content(meta_data_arr)
         # for elem_info in meta_data_arr:
         #    print(elem_info)
+        helpers.print_scrapped_content(meta_data_arr)
+
+    def test_scrap_youtube(self, driver) -> list:
+        meta_data_arr=[]
+        driver.get(locators.test_yt_url)
+
+        # Commented once the tests are executed in non-headless mode
+        driver.maximize_window()
+
+        # Create an instance of ActionChains
+        # actions = ActionChains(driver)
+
+        # Explicit wait of 10 seconds
+        # wait = WebDriverWait(driver, 10)
+
+        meta_data_arr = helpers.scrap_yt_content(driver)
         helpers.print_scrapped_content(meta_data_arr)
