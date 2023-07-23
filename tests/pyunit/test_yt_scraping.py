@@ -1,17 +1,11 @@
-from selenium import webdriver
-from selenium.webdriver import ChromeOptions
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.keys import Keys
-# Replaced with Explicit Waits
-import time
-
 # Import the locators file
 import sys
-sys.path.append(sys.path[0] + "/..")
+sys.path.append(sys.path[0] + "/../..")
 from pageobject.locators import locators
+from pageobject.locators import *
+
+from pageobject.helpers import helpers
+from pageobject.helpers import *
 
 def scrap_youtube(test_url) -> list:
     options = ChromeOptions()
@@ -21,7 +15,6 @@ def scrap_youtube(test_url) -> list:
 
     options.add_argument("--headless=new")
     driver = webdriver.Chrome(options=options)
-    # driver = webdriver.Chrome()
     driver.get(test_url)
 
     # Commented once the tests are executed in non-headless mode
@@ -134,11 +127,9 @@ def scrap_youtube(test_url) -> list:
     return meta_data_arr
 
 def main():
-    # meta_data_arr = scrap_youtube("https://www.youtube.com/@hjsblogger/videos")
-    meta_data_arr = scrap_youtube("https://www.youtube.com/@lambdatest/videos")
-    # Print array elements on new lines
-    for elem_info in meta_data_arr:
-        print(elem_info)
+    meta_data_arr = scrap_youtube(locators.test_yt_url)
+
+    helpers.print_scrapped_content(meta_data_arr)
 
 if __name__ == '__main__':
     main()
