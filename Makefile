@@ -9,13 +9,12 @@ install:
 	$(PIP) install -r requirements.txt
 	@echo "Set env vars LT_USERNAME & LT_ACCESS_KEY"
     # Procure Username and AccessKey from https://accounts.lambdatest.com/security
-    export LT_USERNAME=himanshujlambdatest
-    export LT_ACCESS_KEY=Ia1MiqNfciCXfnPI8oWs6PL7u0bZ2NRqXd1nkB3HpzICma13D6
+    export LT_USERNAME=himanshuj
+    export LT_ACCESS_KEY=Ia1Miq
 
 .PHONY: test
 test:
     export NODE_ENV = test
-
 
 .PHONY: test
 scrap-using-pyunit:
@@ -27,6 +26,10 @@ scrap-using-pytest:
 	- echo $(EXEC_PLATFORM)
 	- $(PYTEST) --verbose --capture=no tests/pytest/test_ecommerce_scraping.py
 	- $(PYTEST) --verbose --capture=no tests/pytest/test_yt_scraping.py
+
+scrap-using-beautiful-soup:
+	- echo $(EXEC_PLATFORM)
+	- $(PYTHON) tests/beautiful-soup/test_ecommerce_scraping.py
 
 .PHONY: clean
 clean:
@@ -41,7 +44,8 @@ distclean: clean
 .PHONY: help
 help:
 	@echo ""
-	@echo "install - Install project dependencies"
-	@echo "clean - Clean up temp files"
-	@echo "scrap-using-pyunit - Web Scraping using Pyunit"
-	@echo "scrap-using-pytest - Web Scraping using Pytest"
+	@echo "install : Install project dependencies"
+	@echo "clean : Clean up temp files"
+	@echo "scrap-using-pyunit : Web Scraping using Pyunit"
+	@echo "scrap-using-pytest : Web Scraping using Pytest"
+	@echo "scrap-using-beautiful-soup : Web Scraping using Beautiful Soup"
