@@ -12,6 +12,10 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import pytest
 
+# Imports for Beautiful Soup
+import requests
+from bs4 import BeautifulSoup
+
 class locators(object):
     ########## Locators for e-commerce playground ##########
 
@@ -27,3 +31,7 @@ class locators(object):
     loc_contains = "//*[@id='contents']"
     loc_rich_renderer = "style-scope.ytd-rich-grid-renderer"
     loc_grid_row = "ytd-rich-item-renderer.style-scope.ytd-rich-grid-row"
+
+    ########## Definitions for scraping using Beautiful Soup ###########
+
+    test_bs4_url = "https://ecommerce-playground.lambdatest.io/index.php?route=product/category&path=57"

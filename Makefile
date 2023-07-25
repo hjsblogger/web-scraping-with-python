@@ -9,8 +9,8 @@ install:
 	$(PIP) install -r requirements.txt
 	@echo "Set env vars LT_USERNAME & LT_ACCESS_KEY"
     # Procure Username and AccessKey from https://accounts.lambdatest.com/security
-    export LT_USERNAME=himanshuj
-    export LT_ACCESS_KEY=Ia1MiqNfc
+    export LT_USERNAME=himanshujlambdatest
+    export LT_ACCESS_KEY=Ia1MiqNfciCXfnPI8oWs6PL7u0bZ2NRqXd1nkB3HpzICma13D6
 
 .PHONY: test
 test:
