@@ -1,6 +1,8 @@
 # Selenium WebDriver used for infinite scrolling
 # Beautiful Soup used for scraping content
 
+#Beautiful Soup Official Documentation - https://www.crummy.com/software/BeautifulSoup/bs4/doc
+
 import sys
 from pprint import pprint
 sys.path.append(sys.path[0] + "/../..")

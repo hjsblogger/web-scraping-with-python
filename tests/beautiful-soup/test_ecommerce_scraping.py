@@ -1,3 +1,5 @@
+#Beautiful Soup Official Documentation - https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+
 # Import the locators file
 import sys
 from pprint import pprint
