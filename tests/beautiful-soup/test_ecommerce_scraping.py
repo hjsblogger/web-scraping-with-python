@@ -10,15 +10,19 @@ from pageobject.helpers import helpers
 from pageobject.helpers import *
 
 def scrap_ecommerce(url) -> list:
-    data = requests.get(url)
+    response = requests.get(url)
 
-    meta_data_arr = []
+    if response.status_code != 200:
+        print(f"Unable to fetch the page. Status code: {response.status_code}")
+        return None
 
-    soup = BeautifulSoup(data.text, 'html.parser')
+    soup = BeautifulSoup(response.text, 'html.parser')
     # print(soup.prettify())
 
     rows = soup.select('.product-layout.product-grid.no-desc.col-xl-4.col-lg-4.col-md-4.col-sm-6.col-6')
     # print(len(articles))
+
+    meta_data_arr = []
 
     for row in rows:
         link = row.find("a", class_='carousel d-block slide')
