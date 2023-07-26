@@ -42,11 +42,11 @@ def scrap_ecommerce(url) -> list:
 # Pagination - 1:5
 # Page 1: https://ecommerce-playground.lambdatest.io/index.php?route=product/category&path=57&page=1
 # Page 5: https://ecommerce-playground.lambdatest.io/index.php?route=product/category&path=57&page=5
-
-for iteration in range(1,6):
-    test_url = locators.test_bs4_url + "&page=" + str(iteration)
-    meta_data_arr = scrap_ecommerce(test_url)
-    print('\n')
-    print("Product Page = " + test_url)
-    print("*********************************************************************************************************\n")
-    helpers.print_scrapped_content(meta_data_arr)
+if __name__ == '__main__':
+    for iteration in range(1,6):
+        test_url = locators.test_bs4_url + "&page=" + str(iteration)
+        meta_data_arr = scrap_ecommerce(test_url)
+        print('\n')
+        print("Product Page = " + test_url)
+        print("*********************************************************************************************************\n")
+        helpers.print_scrapped_content(meta_data_arr)

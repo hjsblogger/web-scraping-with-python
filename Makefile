@@ -30,6 +30,7 @@ scrap-using-pytest:
 scrap-using-beautiful-soup:
 	- echo $(EXEC_PLATFORM)
 	- $(PYTHON) tests/beautiful-soup/test_ecommerce_scraping.py
+	- $(PYTHON) tests/beautiful-soup/test_infinite_scraping.py
 
 .PHONY: clean
 clean:

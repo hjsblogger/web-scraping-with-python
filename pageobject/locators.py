@@ -35,3 +35,7 @@ class locators(object):
     ########## Definitions for scraping using Beautiful Soup ###########
 
     test_bs4_url = "https://ecommerce-playground.lambdatest.io/index.php?route=product/category&path=57"
+
+    ########## Definitions for scraping using Beautiful Soup ###########
+
+    test_bs4_infinite_url = "https://scrapingclub.com/exercise/list_infinite_scroll/"
