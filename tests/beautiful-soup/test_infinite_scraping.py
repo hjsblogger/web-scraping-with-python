@@ -54,11 +54,13 @@ def scrap_inifite_website(url) -> list:
     # since we have already read the source
     driver.quit()
 
-    rows = soup.select('.col-lg-4.col-md-6.mb-4')
-    print(len(rows))
+    # Code changes as per 28/07/2023
+    # In case if elements are not located, please change the locators accordingly
+    rows = soup.find_all('div', class_='w-full rounded border post')
+    print("\nTotal items on " + url + " are " + str(len(rows)) + "\n")
 
     for row in rows:
-        dress = row.find('h4', class_='card-title')
+        dress = row.find('h4')
         link = dress.find('a')
         price = row.find('h5')
         
