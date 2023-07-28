@@ -137,12 +137,12 @@ Trigger the *make scrap-using-pytest* command on the terminal to scrap content f
 
 Beautiful Soup is a Python library that is majorly used for screen-scraping (or web scraping). More information about the library is available on [Beautiful Soup HomePage](https://www.crummy.com/software/BeautifulSoup/)
 
-The Beautiful Soup (bs4) library is already installed as a part of *pre-requisite steps*. Hence, it is safe to proceed with the scraping with Beautiful Soup. *[Scraping Club Infinite Scroll Website]*(https://scrapingclub.com/exercise/list_infinite_scroll/)) has infinite scrolling pages and Selenium is used to scroll to the end of the page so that all the items on the page can be scraped using the said libraries.
+The Beautiful Soup (bs4) library is already installed as a part of *pre-requisite steps*. Hence, it is safe to proceed with the scraping with Beautiful Soup. [Scraping Club Infinite Scroll Website](https://scrapingclub.com/exercise/list_infinite_scroll/) has infinite scrolling pages and Selenium is used to scroll to the end of the page so that all the items on the page can be scraped using the said libraries.
 
 The following websites are used for demonstration:
 
 * [LambdaTest E-commerce Playground](https://ecommerce-playground.lambdatest.io/)
-* [Scraping Club Infinite Scroll Website](https://scrapingclub.com/exercise/list_infinite_scroll/))
+* [Scraping Club Infinite Scroll Website](https://scrapingclub.com/exercise/list_infinite_scroll/)
 
 Follow the below mentioned steps to perform web scraping using Beautiful Soup(bs4):
 
