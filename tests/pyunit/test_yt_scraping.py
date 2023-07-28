@@ -12,25 +12,32 @@ from pyunitsetup import pyunit_setup
 test_setup = pyunit_setup()
 
 def scrap_youtube(test_url) -> list:
-    # options = ChromeOptions()
-
-    # Refer https://www.selenium.dev/blog/2023/headless-is-going-away/ for the new way
-    # to trigger browser in headless mode
-
-    # options.add_argument("--headless=new")
-    # driver = webdriver.Chrome(options=options)
-    # driver.get(test_url)
-
-    test_setup.setUp()
-    test_setup.browser.get(locators.test_yt_url)
-
     meta_data_arr=[]
+    test_setup.setUp()
+    test_setup.browser.get(test_url)
 
-    # Create an instance of ActionChains
-    # actions = ActionChains(driver)
+    # Click on 'Accept All' in case the said window comes up
+    # This occurs since cookies are cleared and machines are sanitized each run
 
-    # Explicit wait of 10 seconds
-    # wait = WebDriverWait(driver, 10)
+    # Stack Overflow - https://stackoverflow.com/questions/66902404/selenium-python-click-agree-to-youtube-cookie
+    # Locators were located using the below link
+    # https://consent.youtube.com/m?continue=https%3A%2F%2Fwww.youtube.com%2F&gl=FR&m=0&pc=yt&uxe=23983172&hl=en&src=1
+
+    # Below issue is not observed in local machines since there is no clean-up of cookies
+
+    try:
+        # Wait until the "Accept all" button is clickable
+        accept_all = WebDriverWait(test_setup.browser, 5).until(EC.element_to_be_clickable(
+            (By.CSS_SELECTOR, "form:nth-child(3) > div > div > button[aria-label= 'Accept all']")))
+
+        # Click the "Accept all" button
+        accept_all.click()
+
+        print("Click on Accept all successful")
+    except Exception as e:
+        # Even if this exception is raised, we can still continue test execution
+        # This means that the button was not found & the YouTube channel link has opened successfully
+        print(f"'Accept All' button not present, proceed with the tests: {str(e)}")
 
     meta_data_arr = helpers.scrap_yt_content(test_setup.browser)
 
