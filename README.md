@@ -265,7 +265,7 @@ As seen above, the content from LambdaTest YouTube channel and LambdaTest e-comm
 
 As seen above, the status of test execution is "Completed". Since the browser is instantiated in the *Headless* mode, the video recording is not available on the dashboard.
 
-## Have feedback or need assistance?
+##Have feedback or need assistance?
 Feel free to fork the repo and contribute to make it better! Email to [himanshu[dot]sheth[at]gmail[dot]com](mailto:himanshu.sheth@gmail.com) for any queries or ping me on the following social media sites:
 
 <b>LinkedIn</b>: [@hjsblogger](https://linkedin.com/in/hjsblogger)<br/>
