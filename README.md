@@ -50,7 +50,7 @@ Procure the LambdaTest User Name and Access Key by navigating to [LambdaTest Acc
 
 Add the LambdaTest User Name and Access Key in the *Makefile* that is located in the parent directory. Once done, save the Makefile.
 
-![MakeFileChange](https://github.com/hjsblogger/web-scraping-with-python/assets/1688653/532140a8-ddd3-4d19-9683-5cd73c3b9ffa)
+![MakeFileChange](https://github.com/hjsblogger/web-scraping-with-python/assets/1688653/e3c0a6c3-cc1d-4692-ab59-182ca30964c0)
 
 ## Dependency/Package Installation
 
