@@ -4,6 +4,8 @@
 #Beautiful Soup Official Documentation - https://www.crummy.com/software/BeautifulSoup/bs4/doc
 
 import sys
+# Import the locators file
+import os
 from pprint import pprint
 sys.path.append(sys.path[0] + "/../..")
 
@@ -13,16 +15,50 @@ from pageobject.locators import *
 from pageobject.helpers import helpers
 from pageobject.helpers import *
 
+exec_platform = os.getenv('EXEC_PLATFORM')
+
 def scrap_inifite_website(url) -> list:
     meta_data_arr = []
-    # Scroll through the entire page using Selenium
-    options = ChromeOptions()
 
-    # Refer https://www.selenium.dev/blog/2023/headless-is-going-away/ for the new way
-    # to trigger browser in headless mode
+    if exec_platform == 'cloud':
+        username = environ.get('LT_USERNAME', None)
+        access_key = environ.get('LT_ACCESS_KEY', None)
 
-    options.add_argument("--headless=new")
-    driver = webdriver.Chrome(options=options)
+        gridURL = "https://{}:{}@hub.lambdatest.com/wd/hub".format(username, access_key)
+        
+        ch_options = webdriver.ChromeOptions()
+        ch_options.browser_version = "latest"
+        ch_options.platform_name = "Windows 11"
+
+        lt_options = {}
+        lt_options["build"] = "Build: Web Scraping with Selenium & Beautiful Soup"
+        lt_options["project"] = "Project: Web Scraping with Selenium & Beautiful Soup"
+        lt_options["name"] = "Test: Web Scraping with Selenium & Beautiful Soup"
+
+        lt_options["browserName"] = "Chrome"
+        lt_options["browserVersion"] = "latest"
+        lt_options["platformName"] = "Windows 11"
+
+        lt_options["console"] = "error"
+        lt_options["w3c"] = True
+        lt_options["headless"] = True
+
+        ch_options.set_capability('LT:Options', lt_options)
+
+        driver = webdriver.Remote(
+            command_executor = gridURL,
+            options = ch_options
+        )
+    elif exec_platform == 'local':
+        # Scroll through the entire page using Selenium
+        options = ChromeOptions()
+
+        # Refer https://www.selenium.dev/blog/2023/headless-is-going-away/ for the new way
+        # to trigger browser in headless mode
+
+        options.add_argument("--headless=new")
+        driver = webdriver.Chrome(options=options)
+
     driver.get(url)
 
     # Took some support from https://stackoverflow.com/a/41181494/126105

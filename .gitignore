@@ -1,0 +1,10 @@
+# ignore these files
+
+.DS_Store
+.idea/
+target/
+.vscode/
+__pycache__/
+__pycache__/
+pageobject/__pycache__/
+tests/pytest/__pycache__/
