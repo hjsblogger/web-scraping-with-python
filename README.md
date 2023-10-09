@@ -166,7 +166,7 @@ Trigger the *make scrap-using-beautiful-soup* command on the terminal to scrap c
 
 <img width="1413" alt="scraping-bs4-5" src="https://github.com/hjsblogger/web-scraping-with-python/assets/1688653/d2a9d796-e1ff-47c5-baa7-323b0ac5649a">
 
-As seen from the above screenshots, content on Pages (1) thru' (5) on *LambdaTest E-Commerce Playground](https://ecommerce-playground.lambdatest.io/index.php?route=product/category&path=57) are successfully displayed on the console.
+As seen from the above screenshots, content on Pages (1) thru' (5) on [LambdaTest E-Commerce Playground](https://ecommerce-playground.lambdatest.io/index.php?route=product/category&path=57) are successfully displayed on the console.
 
 <img width="1413" alt="infinite-1" src="https://github.com/hjsblogger/web-scraping-with-python/assets/1688653/22cbf56e-9420-402f-a16f-df7ea25135e5">
 
