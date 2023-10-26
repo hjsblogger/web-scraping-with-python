@@ -112,59 +112,34 @@ class helpers(object):
 
         time.sleep(2)
 
-        elem_contents = driver.find_element(By.XPATH, locators.loc_contains)
+        elem_1 = driver.find_elements(By.CSS_SELECTOR,
+            "#dismissible > #details")
 
-        # We have reached end of page, let's count the rows with videos
-        elem_video_rows = elem_contents.find_elements(By.CLASS_NAME,
-                    locators.loc_rich_renderer)
+        for video_metadata_1 in elem_1:
+            elem_2 = video_metadata_1.find_element(By.CSS_SELECTOR,
+                "#meta")
 
-        # num_videos = driver.find_elements(elem_video_rows)
-        # print("Total number of row videos in " + test_url + " are " + str(len(elem_video_rows)))
+            elem_3 = elem_2.find_element(By.CSS_SELECTOR,
+                "#video-title")
 
-        # Now that we have the number of rows, let's fetch the details
-        # of each video on the respective rows
+            elem_4 = elem_2.find_element(By.CSS_SELECTOR,
+                "#metadata > #metadata-line > span:nth-child(3)")
 
-        for video in elem_video_rows:
-            elem_ind_video_rows = video.find_elements(By.CSS_SELECTOR,
-                    locators.loc_grid_row)
+            elem_5 = elem_2.find_element(By.CSS_SELECTOR,
+                "#metadata > #metadata-line > span:nth-child(4)")
 
-            # print("Individual Rows = " + str(len(elem_ind_video_rows)))
+            video_title = elem_3.get_attribute('innerText')
+            video_views = elem_4.get_attribute('innerText')
+            video_time = elem_5.get_attribute('innerText')
 
-            for video_metadata in elem_ind_video_rows:
-                elem_1 = video_metadata.find_element(By.CSS_SELECTOR,
-                    "#content .style-scope.ytd-rich-item-renderer")
+            # Create a dictionary of the video meta-data
+            meta_data_dict = {
+                'video title': video_title,
+                'video views': video_views,
+                'video duration': video_time
+            }
 
-                elem_2 = elem_1.find_element(By.CSS_SELECTOR,
-                    "ytd-rich-grid-media.style-scope.ytd-rich-item-renderer")
-
-                elem_4 = elem_2.find_elements(By.CSS_SELECTOR,
-                    "#dismissible > #details")
-
-                for video_metadata_1 in elem_4:
-                    elem_5 = video_metadata_1.find_element(By.CSS_SELECTOR,
-                        "#meta")
-
-                    elem_6 = elem_5.find_element(By.CSS_SELECTOR,
-                        "#video-title")
-
-                    elem_7 = elem_5.find_element(By.CSS_SELECTOR,
-                        "#metadata > #metadata-line > span:nth-child(3)")
-
-                    elem_8 = elem_5.find_element(By.CSS_SELECTOR,
-                        "#metadata > #metadata-line > span:nth-child(4)")
-
-                    video_title = elem_6.get_attribute('innerText')
-                    video_views = elem_7.get_attribute('innerText')
-                    video_time = elem_8.get_attribute('innerText')
-
-                    # Create a dictionary of the video meta-data
-                    meta_data_dict = {
-                        'video title': video_title,
-                        'video views': video_views,
-                        'video duration': video_time
-                    }
-
-                    meta_data_arr.append(meta_data_dict)
+            meta_data_arr.append(meta_data_dict)
 
         return meta_data_arr
 
