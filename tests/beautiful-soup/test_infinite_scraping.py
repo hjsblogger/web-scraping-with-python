@@ -79,12 +79,7 @@ def scrap_inifite_website(url) -> list:
 
     time.sleep(2)
 
-    # Why features='html.parser' is required
-    # The code that caused this warning is on line 44 of the file <file>.
-    # To get rid of this warning, pass the additional argument 'features="html.parser"'
-    # to the BeautifulSoup constructor.
     soup = BeautifulSoup(driver.page_source, features='html.parser')
-    # print(soup.prettify())
     
     # Instantiated Chrome instance is no longer required
     # since we have already read the source
