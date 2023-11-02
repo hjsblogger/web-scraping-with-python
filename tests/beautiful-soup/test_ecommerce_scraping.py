@@ -19,7 +19,6 @@ def scrap_ecommerce(url) -> list:
         return None
 
     soup = BeautifulSoup(response.text, 'html.parser')
-    # print(soup.prettify())
 
     rows = soup.select('.product-layout.product-grid.no-desc.col-xl-4.col-lg-4.col-md-4.col-sm-6.col-6')
     # print(len(articles))
